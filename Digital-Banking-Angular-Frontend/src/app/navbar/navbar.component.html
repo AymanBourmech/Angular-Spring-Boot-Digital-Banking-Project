@@ -1,0 +1,79 @@
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark shadow-lg sticky-top">
+  <div class="container-fluid">
+    <div class="home">
+      <a class="navbar-brand" routerLink="/navbar/home"
+        >Digital Banking Application</a
+      >
+    </div>
+    <button
+      class="navbar-toggler"
+      type="button"
+      data-bs-toggle="collapse"
+      data-bs-target="#navbarSupportedContent"
+      aria-controls="navbarSupportedContent"
+      aria-expanded="false"
+      aria-label="Toggle navigation"
+    >
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+        <li class="nav-item home1">
+          <a
+            class="nav-link active fs-5 text-dark"
+            aria-current="page"
+            routerLink="/navbar/home"
+            >Home <i class="bi bi-house ms-2"></i
+          ></a>
+        </li>
+
+        <li class="nav-item home2">
+          <a class="nav-link fs-5 text-dark" routerLink="/navbar/accounts"
+            >Accounts <i class="bi bi-coin ms-2"></i
+          ></a>
+        </li>
+        <li class="nav-item dropdown">
+          <a
+            class="nav-link dropdown-toggle fs-5 text-dark"
+            href="#"
+            id="navbarDropdown"
+            role="button"
+            data-bs-toggle="dropdown"
+            aria-expanded="false"
+          >
+            Customers<i class="bi bi-person ms-2"></i>
+          </a>
+          <ul class="dropdown-menu home3" aria-labelledby="navbarDropdown">
+            <li>
+              <a
+                class="dropdown-item fs-5 text-dark"
+                routerLink="/navbar/customers"
+                >Search customers<i class="bi bi-search ms-2"></i
+              ></a>
+            </li>
+            <li>
+              <a
+                class="dropdown-item fs-5 text-dark"
+                routerLink="/navbar/new-customer"
+                >New customers<i class="bi bi-person-plus ms-2"></i
+              ></a>
+            </li>
+          </ul>
+        </li>
+      </ul>
+      <ul class="navbar-nav">
+        <li>
+          <a class="nav-link text-white fs-5">
+            Welcome&nbsp;:&nbsp;{{ storage.getUser().username }}
+          </a>
+        </li>
+        <li>
+          <a class="btn nav-link text-white fs-5" (click)="handleLogout()">
+            <i class="bi bi-box-arrow-right"></i>
+          </a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>
+<router-outlet></router-outlet>

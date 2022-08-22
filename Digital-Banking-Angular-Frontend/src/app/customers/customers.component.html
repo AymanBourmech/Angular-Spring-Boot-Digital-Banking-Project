@@ -1,0 +1,108 @@
+<div class="container position d-flex flex-column min-vh-100">
+  <ng-container
+    *ngIf="customers | async as listCustomers; else failureOrLoading"
+  >
+    <div class="card shadow" *ngIf="customers">
+      <div class="card-header">Customers</div>
+      <div class="card-body">
+        <div *ngIf="searchFormGroup">
+          <form
+            [formGroup]="searchFormGroup"
+            (ngSubmit)="handleSearchCustomers()"
+          >
+            <div
+              class="input-group"
+              *ngIf="storage.getUser().roles == 'ROLE_ADMIN'"
+            >
+              <label class="input-group-text">Keyword :</label>
+              <input
+                type="text"
+                formControlName="keyword"
+                class="form-control"
+              />
+              <button class="btn btn-info">
+                <i class="bi bi-search"></i>
+              </button>
+            </div>
+          </form>
+        </div>
+        <table class="table">
+          <thead>
+            <tr>
+              <th class="text-center">ID</th>
+              <th class="text-center">Name</th>
+              <th class="text-center">Email</th>
+              <th
+                class="text-center"
+                *ngIf="storage.getUser().roles == 'ROLE_ADMIN'"
+              >
+                Delete
+              </th>
+              <th
+                class="text-center"
+                *ngIf="storage.getUser().roles == 'ROLE_ADMIN'"
+              >
+                Edit
+              </th>
+              <th
+                class="text-center"
+                *ngIf="storage.getUser().roles == 'ROLE_ADMIN'"
+              >
+                List of Accounts
+              </th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let c of customers | async">
+              <td class="text-center">{{ c.id }}</td>
+              <td class="text-center">{{ c.name }}</td>
+              <td class="text-center">{{ c.email }}</td>
+              <td
+                class="text-center"
+                *ngIf="storage.getUser().roles == 'ROLE_ADMIN'"
+              >
+                <button
+                  (click)="handleDeleteCustomer(c)"
+                  class="btn btn-danger"
+                >
+                  <i class="bi bi-trash"></i>
+                </button>
+              </td>
+              <td
+                class="text-center"
+                *ngIf="storage.getUser().roles == 'ROLE_ADMIN'"
+              >
+                <button
+                  [routerLink]="['/navbar/editcustomer', c.id]"
+                  class="btn btn-info"
+                >
+                  <i class="bi bi-pencil"></i>
+                </button>
+              </td>
+              <td
+                class="text-center"
+                *ngIf="storage.getUser().roles == 'ROLE_ADMIN'"
+              >
+                <button
+                  (click)="handleCustomerAccounts(c)"
+                  class="btn btn-success"
+                >
+                  Accounts<i class="bi bi-arrow-right-circle ms-2"></i>
+                </button>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </ng-container>
+  <ng-template #failureOrLoading>
+    <ng-container *ngIf="errorMessage; else Loading">
+      <div class="text-danger">
+        {{ errorMessage }}
+      </div>
+    </ng-container>
+    <ng-template #Loading> Loading ... </ng-template>
+  </ng-template>
+</div>
+<app-footer></app-footer>

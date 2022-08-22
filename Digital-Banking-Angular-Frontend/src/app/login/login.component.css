@@ -1,0 +1,13 @@
+/* .back {
+  background-image: linear-gradient(#eeeaea, rgb(218, 19, 19)) !important;
+} */
+.loginPosition {
+  margin-top: 100px;
+}
+.loginBackColor {
+  background-color: bisque;
+}
+.loginTitre {
+  font-size: 60px;
+  font-family: "Times New Roman", Times, serif;
+}

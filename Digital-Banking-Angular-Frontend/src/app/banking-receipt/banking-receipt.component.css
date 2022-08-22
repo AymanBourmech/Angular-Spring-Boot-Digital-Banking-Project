@@ -1,0 +1,23 @@
+.position {
+  margin-top: 90px;
+}
+@media print {
+  button {
+    display: none;
+  }
+
+  input {
+    display: none;
+  }
+  label {
+    display: none;
+  }
+  @page {
+    margin-top: -160px;
+    margin-bottom: 0;
+  }
+  body {
+    padding-top: 90x;
+    padding-bottom: 300px;
+  }
+}

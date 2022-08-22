@@ -1,0 +1,46 @@
+<div class="container position d-flex flex-column min-vh-100">
+  <div class="card shadow">
+    <div class="card-header">
+      <p class="fs-4 text-primary mb-3 text-center">
+        <strong>List of Accounts Per Customer</strong>
+      </p>
+      <p><strong>Customer ID : </strong> {{ cust.id }}</p>
+      <p><strong>Customer Name : </strong> {{ cust.name }}</p>
+      <p><strong>Customer Email : </strong> {{ cust.email }}</p>
+    </div>
+    <div class="card-body">
+      <table class="table">
+        <thead>
+          <tr>
+            <th class="text-center">ID</th>
+            <th class="text-center">Creation Date</th>
+            <th class="text-center">Balance</th>
+            <th class="text-center">Consult</th>
+            <th class="text-center">Banking Receipt</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let c of accounts | async">
+            <td class="text-center">{{ c.id }}</td>
+            <td class="text-center">{{ c.createdAt }}</td>
+            <td class="text-center">{{ c.balance }}</td>
+            <td class="text-center">
+              <button
+                (click)="handleAccountPerCustomer(c)"
+                class="btn btn-danger"
+              >
+                <i class="bi bi-eye"></i>
+              </button>
+            </td>
+            <td class="text-center">
+              <button (click)="BankingReceiptPage(c)" class="btn btn-warning">
+                <i class="bi bi-printer"></i>
+              </button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+<app-footer></app-footer>
